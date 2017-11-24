@@ -12,9 +12,7 @@ node('linux') {
     junit'reports/result.xml'
 }
  stage('Deploy'){
-   
-
-withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'cd21c5ec-bf34-4742-b7d3-157aab504759', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+   withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'cd21c5ec-bf34-4742-b7d3-157aab504759', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
     // sh 'aws --region us-east-1 ssm start-automation-execution \
     --document-name rectangle-2.jar \
     --parameters \
