@@ -13,14 +13,14 @@ node('linux') {
 }
  stage('Deploy'){
    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'cd21c5ec-bf34-4742-b7d3-157aab504759', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-    // sh 'aws --region us-east-1 ssm start-automation-execution \
+    sh 'aws --region us-east-1 ssm start-automation-execution \
     --document-name rectangle-2.jar \
     --parameters \
         "sourceAMIid='{{ssm:latestAmi}}'" 
 } 
 stage('Report'){
    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'cd21c5ec-bf34-4742-b7d3-157aab504759', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-    // aws cloudformation describe-stack-resources --region us-east-1 --stack-name jenkins-stack
+    sh aws cloudformation describe-stack-resources --region us-east-1 --stack-name jenkins-stack
 }
 }
    
