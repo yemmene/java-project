@@ -14,3 +14,5 @@ stage('Deploy'){
 
 stage('Results'){
     junit'reports/result.xml'
+}
+}
